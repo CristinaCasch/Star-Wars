@@ -18,9 +18,16 @@ export const NavbarMenu = () => {
 					</Navbar.Brand>
 				</Link>
 				<Navbar.Collapse className="justify-content-end">
+					<Link className="nav-link" to="/planets">
+						<h5>Planets</h5>
+					</Link>
+					<Link className="nav-link" to="/characters">
+						<h5>Characters</h5>
+					</Link>
+
 					<DropdownButton id="dropdown-basic-button" title="0 Favorites" variant="dark">
 						<Dropdown.Item href="#/action-1">
-							Action <i className="fas fa-trash-alt float-right" />
+							Add favorites <i className="fas fa-trash-alt float-right" />
 						</Dropdown.Item>
 					</DropdownButton>
 				</Navbar.Collapse>
