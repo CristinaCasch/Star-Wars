@@ -25,12 +25,14 @@ const Planets = () => {
 								/>
 								<Card.Body>
 									<Card.Title>{item.name}</Card.Title>
-									<Link>
+									<Link to="/planetsDetails/:id">
 										<Button variant="primary">Go to details</Button>
 									</Link>
-									<Button>
-										<i className="fa fa-heart" />
-									</Button>
+									<Link onClick={() => actions.addFavorite(item.name, "planets")}>
+										<Button variant="outline-dark">
+											<i className="far fa-heart" />
+										</Button>
+									</Link>
 								</Card.Body>
 							</Card>
 						</Col>

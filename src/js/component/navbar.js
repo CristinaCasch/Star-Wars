@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import { Navbar, DropdownButton, Dropdown, Container } from "react-bootstrap";
 
 export const NavbarMenu = () => {
+	const { store, actions } = useContext(Context);
 	return (
 		<>
 			<Navbar className="navbar navbar-dark bg-dark mx-5 ">
@@ -25,10 +27,17 @@ export const NavbarMenu = () => {
 						<h5>Characters</h5>
 					</Link>
 
-					<DropdownButton id="dropdown-basic-button" title="0 Favorites" variant="dark">
-						<Dropdown.Item href="#/action-1">
-							Add favorites <i className="fas fa-trash-alt float-right" />
-						</Dropdown.Item>
+					<DropdownButton id="dropdown-basic-button" title={`Favoritos ${store.favorites.length}`}>
+						{store.favorites.map((item, index) => {
+							return (
+								<Dropdown.Item id="item-favorites" key={index} href="#/action-1">
+									{item}
+									<span onClick={() => actions.deleteFavorites(index)}>
+										<i className="fas fa-trash-alt float-right" />
+									</span>
+								</Dropdown.Item>
+							);
+						})}
 					</DropdownButton>
 				</Navbar.Collapse>
 			</Navbar>

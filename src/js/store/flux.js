@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			fetchPeople: async () => {
-				const url = "https://swapi.dev/api/people/";
+				const url = "https://www.swapi.tech/api/people/";
 				const response = await fetch(url);
 				const data = await response.json();
 				setStore({ peopleList: data.results });
@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchPlanets: async () => {
 				const store = getStore();
-				const URL = "https://swapi.dev/api/planets/";
+				const URL = "https://www.swapi.tech/api/planets/";
 				const CONFIG = {
 					method: "GET",
 					headers: {
@@ -25,11 +25,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await fetch(URL, CONFIG);
 				const json = await response.json();
 				setStore({ planetList: json.results });
-			}
+			},
 
-			/**
-            fetch().then().then(data => setStore({ "foo": data.bar }))
-        */
+			addFavorite: name => {
+				const store = getStore();
+
+				store.favorites.includes(name)
+					? setStore({ favorites: store.favorites })
+					: setStore({ favorites: store.favorites.concat(name) });
+				console.log(store.favorites);
+			},
+
+			deleteFavorites: index => {
+				const store = getStore();
+				store.favorites.splice(index, 1);
+				setStore({ favorites: store.favorites });
+			}
 		}
 	};
 };
