@@ -25,7 +25,7 @@ const Planets = () => {
 								/>
 								<Card.Body>
 									<Card.Title>{item.name}</Card.Title>
-									<Link to="/planetsDetails/:id">
+									<Link to="/planetDetails/:id">
 										<Button variant="primary">Go to details</Button>
 									</Link>
 									<Link onClick={() => actions.addFavorite(item.name, "planets")}>
