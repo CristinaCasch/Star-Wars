@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useParams, useHistory } from "react-router-dom";
-import { Container, Jumbotron, Media, Table, Image, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Container, Jumbotron, Media, Table, Image, Row, Col, Button } from "react-bootstrap";
 
 const PlanetDetails = () => {
 	const { id } = useParams();
@@ -51,7 +52,7 @@ const PlanetDetails = () => {
 							<th>Orbital Period</th>
 							<th>Diameter</th>
 							<th>Climate</th>
-							<th>Climate</th>
+							<th>gravity</th>
 							<th>Terrain</th>
 							<th>Surface Water</th>
 							<th>Population</th>
@@ -59,19 +60,22 @@ const PlanetDetails = () => {
 					</thead>
 					<tbody>
 						<tr>
-							<td>1</td>
-							<td>Table cell</td>
-							<td>Table cell</td>
-							<td>Table cell</td>
-							<td>Table cell</td>
-							<td>Table cell</td>
-							<td>Table cell</td>
-							<td />
-							<td />
+							<td>{item.name}</td>
+							<td>{item.rotation_period}</td>
+							<td>{item.orbital_period}</td>
+							<td>{item.diameter}</td>
+							<td>{item.climate}</td>
+							<td>{item.gravity}</td>
+							<td>{item.terrain}</td>
+							<td>{item.surface_water}</td>
+							<td>{item.population}</td>
 						</tr>
 					</tbody>
 				</Table>
 			</Jumbotron>
+			<Link to="/">
+				<Button variant="primary">Back to home</Button>
+			</Link>
 		</Container>
 	);
 };
