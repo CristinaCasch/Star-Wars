@@ -1,27 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Container, Jumbotron, Media, Table, Image, Row, Col, Button } from "react-bootstrap";
 
 const PeopleDetails = () => {
-	const { value, id } = useParams();
+	const { id } = useParams();
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.fetchPeople();
+		actions.fetchCharacter(id);
 	}, []);
-
+	console.log(store.people);
 	const goBack = () => {
 		history.goBack();
 	};
 
 	return (
 		<Container>
-			{store.peopleList.map((item, index) => {
-				return (
-					<Jumbotron className="mt-5" key={index}>
+			<Jumbotron className="mt-5">
+				{store.people && (
+					<>
 						<Media>
 							<Row>
 								<Col>
@@ -35,7 +35,7 @@ const PeopleDetails = () => {
 								</Col>
 								<Col>
 									<Media.Body>
-										<h5>{item.name}</h5>
+										<h5>{store.people && store.people.name}</h5>
 										<p>
 											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
 											ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
@@ -49,6 +49,7 @@ const PeopleDetails = () => {
 						<Table responsive="sm">
 							<thead>
 								<tr>
+									<th>Name</th>
 									<th>Height</th>
 									<th>Mass</th>
 									<th>Hair color</th>
@@ -60,22 +61,24 @@ const PeopleDetails = () => {
 							</thead>
 							<tbody>
 								<tr>
-									<td>{item.height}</td>
-									<td>{item.mass}</td>
-									<td>{item.hair_color}</td>
-									<td>{item.skin_color}</td>
-									<td>{item.eye_color}</td>
-									<td>{item.birth_year}</td>
-									<td>{item.gender}</td>
+									<td>{store.people ? store.people.name : ""}</td>
+									<td>{store.people ? store.people.height : ""}</td>
+									<td>{store.people ? store.people.mass : ""}</td>
+									<td>{store.people ? store.people.hair_color : ""}</td>
+									<td>{store.people ? store.people.skin_color : ""}</td>
+									<td>{store.people ? store.people.eye_color : ""}</td>
+									<td>{store.people ? store.people.birth_year : ""}</td>
+									<td>{store.people ? store.people.gender : ""}</td>
 								</tr>
 							</tbody>
 						</Table>
-						<Link to="/">
-							<Button variant="primary">Back to home</Button>
-						</Link>
-					</Jumbotron>
-				);
-			})}
+					</>
+				)}
+
+				<Link to="/">
+					<Button variant="primary">Back to home</Button>
+				</Link>
+			</Jumbotron>
 		</Container>
 	);
 };

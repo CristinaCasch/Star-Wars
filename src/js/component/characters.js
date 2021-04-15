@@ -25,7 +25,7 @@ const Characters = () => {
 								/>
 								<Card.Body>
 									<Card.Title>{item.name}</Card.Title>
-									<Link to="/peopleDetails/:id">
+									<Link to={`/peopleDetails/${item.uid}`}>
 										<Button variant="primary">Go to details</Button>
 									</Link>
 									<Link onClick={() => actions.addFavorite(item.name, "people")}>

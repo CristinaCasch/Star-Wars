@@ -14,6 +14,7 @@ const Planets = () => {
 		<Container>
 			<Row>
 				{store.planetList.map((item, index) => {
+					console.log("This is item", item);
 					return (
 						<Col key={index}>
 							<br />
@@ -25,7 +26,7 @@ const Planets = () => {
 								/>
 								<Card.Body>
 									<Card.Title>{item.name}</Card.Title>
-									<Link to="/planetDetails/:id">
+									<Link to={`/planetDetails/${item.uid}`}>
 										<Button variant="primary">Go to details</Button>
 									</Link>
 									<Link onClick={() => actions.addFavorite(item.name, "planets")}>
